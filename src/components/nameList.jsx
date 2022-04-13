@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 const NameList = (props) => {
+    const [names, setNames] = useState([
+        { name : "Pepper Potts", id : 1 },
+        { name : "Micheal jones", id : 2 },
+        { name : "maria sisily", id : 3 }
+    ]);
+
+
     return(
         <div id="nameList">
-            <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active">
-                    Cras justo odio
+            <div className="list-group">
+                <a href="#" className="list-group-item list-group-item-action active">
+                    This is the names list
                 </a>
-                <a href="#" class="list-group-item list-group-item-action">{props.name}</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+
+                {names.map(name => {
+                    return (<a href="#" key={name.id} className="list-group-item list-group-item-action">{name.name}</a>);
+                })}
             </div>
         </div>
     );
