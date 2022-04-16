@@ -3,7 +3,6 @@ import axios from "axios";
 
 const API_ENDPOINT = "sdfs";
 
-
 const NameList = (props) => {
     // const [names, setNames] = useState([
     //     { name : "Pepper Potts", id : 1 },
@@ -29,7 +28,6 @@ const NameList = (props) => {
     useEffect(() => {
         fetchData()
     },[fetchData]);
-
 
     return(
         <div id="nameList">
