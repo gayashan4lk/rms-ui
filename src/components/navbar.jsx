@@ -1,6 +1,6 @@
 import React from 'react';
 
-function NavBar({ data }) {
+function NavBar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#a">
@@ -57,7 +57,7 @@ function NavBar({ data }) {
           </li>
           <li className="nav-item">
             <a className="nav-link disabled" href="#a">
-              {data}
+              Something here
             </a>
           </li>
         </ul>

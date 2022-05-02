@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
-function UserForm({ propsData }) {
-  const { data, setData } = useState({});
+function UserForm() {
   const { register, handleSubmit } = useForm();
 
   const onFormSubmit = (data) => {
-    console.log(data);
-
+    // console.log(data);
     // below method is working
     axios.post('http://localhost:5099/api/Candidates/create', data).then(
       (response) => {
@@ -27,15 +25,17 @@ function UserForm({ propsData }) {
   return (
     <form onSubmit={handleSubmit(onFormSubmit, onErrors)} method="post">
       <div className="form-group">
-        <label htmlFor="name">User Name</label>
-        <input
-          type="text"
-          name="name"
-          {...register('name')}
-          id="name"
-          className="form-control"
-          placeholder="Enter your name"
-        />
+        <label>
+          User Name
+          <input
+            type="text"
+            name="name"
+            {...register('name')}
+            id="name"
+            className="form-control"
+            placeholder="Enter your name"
+          />
+        </label>
       </div>
       <div className="form-group">
         <label htmlFor="phoneNumber">Mobile Number</label>
