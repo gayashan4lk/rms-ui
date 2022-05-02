@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
@@ -10,10 +12,10 @@ function UserForm() {
     // below method is working
     axios.post('http://localhost:5099/api/Candidates/create', data).then(
       (response) => {
-        console.log(response);
+        // console.log(response);
       },
       (error) => {
-        console.log(error);
+        // console.log(error);
       }
     );
   };
