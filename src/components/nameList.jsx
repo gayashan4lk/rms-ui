@@ -1,47 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const API_ENDPOINT = "sdfs";
+function NameList() {
+  const [names, setNames] = useState([]);
+  const [namesError, setNamesError] = useState();
 
-const NameList = (props) => {
-    // const [names, setNames] = useState([
-    //     { name : "Pepper Potts", id : 1 },
-    //     { name : "Micheal jones", id : 2 },
-    //     { name : "maria sisily", id : 3 }
-    // ]);
+  const fetchData = React.useCallback(() => {
+    axios({
+      method: 'GET',
+      url: 'http://localhost:5099/api/candidates/get',
+    })
+      .then((response) => {
+        setNames(response.data);
+      })
+      .catch((error) => {
+        setNamesError(error);
+        // console.log(error)
+      });
+  }, []);
 
-    const [names, setNames] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-    const fetchData = React.useCallback(() => {
-        axios({
-            "method":"GET",
-            "url":"http://localhost:5099/api/candidates/get"
-        })
-        .then((response) => {
-            setNames(response.data)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-    },[]);
+  let pageView;
+  if (namesError) {
+    pageView = namesError;
+  } else
+    <div id="nameList">
+      <div className="list-group">
+        {names.map((name) => (
+          <h5 key={name.id} className="list-group-item list-group-item-action">
+            {name.name}
+            {name.phoneNumber}
+            {name.comment}
+          </h5>
+        ))}
+      </div>
+    </div>;
 
-    useEffect(() => {
-        fetchData()
-    },[fetchData]);
-
-    return(
-        <div id="nameList">
-            <div className="list-group">
-                <a href="#" className="list-group-item list-group-item-action active">
-                    This is the names list
-                </a>
-
-                {names.map(name => {
-                    return (<a href="#" key={name.id} className="list-group-item list-group-item-action">{name.name} {name.phoneNumber} {name.comment}</a>);
-                })}
-            </div>
-        </div>
-    );
+  return <div>{pageView}</div>;
 }
 
 export default NameList;
