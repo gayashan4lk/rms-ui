@@ -21,7 +21,7 @@ function UserForm() {
   };
 
   const onErrors = (errors) => {
-    console.log(errors);
+    // console.log(errors);
   };
 
   return (
